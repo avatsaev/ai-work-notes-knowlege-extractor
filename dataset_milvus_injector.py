@@ -31,6 +31,7 @@ def inject_data_into_milvus():
     # print(flight_records)
 
     init_db_connection()
+    init_flight_records_collection()
 
     formatted_records = []
     for sample in flight_records:
