@@ -3,4 +3,4 @@ fl.md
 .idea
 .code-workspace
  __pycache__
-datasets/flight-records/index*
+datasets/flight-records
