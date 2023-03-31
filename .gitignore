@@ -1,6 +1,6 @@
-datasets
 fl.md
 .env
 .idea
 .code-workspace
  __pycache__
+datasets/flight-records/index*
