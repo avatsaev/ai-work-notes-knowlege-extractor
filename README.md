@@ -9,7 +9,9 @@ Usage of Langcahin and OpenAI to do multi stage knowledge extraction with Milvus
 docker compose up milvus/docker-compose.yml -d
 ```
 
-- populat the milvus databse from a md file, each note must be in the following format, separated by at least 3 dashes, example:
+- rename `.env.example` to `.env` and add your OPENAI Key
+
+- populate the milvus database from a .md file that contains all your notes, each note must be in the following format, separated by at least 3 dashes, example:
 
 ```md
 
@@ -32,3 +34,5 @@ docker compose up milvus/docker-compose.yml -d
 - put the file in project root at and name it `fl.md`
 
 - run `inject_data_into_milvus()` from `dataset_milvus_injector.py`
+
+- Once milvus is populated run `main.py`
