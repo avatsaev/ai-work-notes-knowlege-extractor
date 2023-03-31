@@ -31,7 +31,7 @@ docker compose up milvus/docker-compose.yml -d
 
 ```
 
-- put the file in project root at and name it `fl.md`
+- put the file at project root and name it `fl.md`
 
 - run `inject_data_into_milvus()` from `dataset_milvus_injector.py`
 
