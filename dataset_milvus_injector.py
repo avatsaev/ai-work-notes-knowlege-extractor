@@ -3,7 +3,7 @@ from milvus_service import init_db_connection, insert_flight_records, get_flight
 from splitter import extract_flight_records
 import os
 
-def encode_record_for_insertion(records):
+def encode_records_for_insertion(records):
     output_list = []
 
     for key in records[0].keys():
@@ -39,7 +39,7 @@ def inject_data_into_milvus():
             create_flight_record_collection_item(sample)
         )
 
-    encoded_records = encode_record_for_insertion(formatted_records)
+    encoded_records = encode_records_for_insertion(formatted_records)
     # print(encoded_records)
     res = insert_flight_records(encoded_records)
     get_flight_records_collection().flush()
