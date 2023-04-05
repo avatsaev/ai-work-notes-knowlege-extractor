@@ -3,6 +3,7 @@ from langchain.chat_models import ChatOpenAI
 from dotenv import load_dotenv
 from search_engine import query_flight_records
 import os
+from obsidian.obisidan_retriever import get_obsidian_retriever
 from query_optimizer_tool import flight_records_query_optimizer_chain
 from flight_records_prompt_template import flight_records_system_prompt_template
 from langchain.schema import (
@@ -16,6 +17,7 @@ from datetime import datetime
 
 
 load_dotenv()
+obsidian_retriever = get_obsidian_retriever()
 
 chat_openai = ChatOpenAI(
     temperature=0,
@@ -40,8 +42,11 @@ if __name__ == '__main__':
         print(f"Optimized query: {optimized_query}")
         print(f"Keywords: {keywords}")
 
-        res = query_flight_records(" ".join(keywords))
-        context = "\n\n --- \n\n".join([r['flight_record_contents'] for r in res])
+        res = obsidian_retriever.get_relevant_documents(" ".join(keywords))
+
+        context = "\n\n --- \n\n".join([r.page_content for r in res])
+
+        # print(f"context: \n{context}")
 
         system_prompt = flight_records_system_prompt_template.format(
             today_date=today_date,

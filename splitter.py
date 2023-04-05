@@ -36,7 +36,7 @@ def save_chunks(chunks, output_directory):
 
         formatted_date = extract_and_format_date(chunk)
         if formatted_date:
-            file_name = f"index_{index}-date_{formatted_date}.md"
+            file_name = f"{formatted_date}.md"
 
             file_path = os.path.join(output_directory, file_name)
             with open(file_path, 'w') as chunk_file:

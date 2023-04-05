@@ -136,12 +136,15 @@ def vector_search_flight_records(query_vector, top_k=5):
     collection.release()
     return res
 
-init_db_connection()
-# delete_flight_records_collection('flight_records')
-# init_flight_records_collection()
-# col = init_flight_records_collection()
-#
-# print( col)
-# build_flight_records_index()
-# reset_flight_records_collection()
 
+# if __name__ == '__main__':
+#
+#     init_db_connection()
+#     delete_flight_records_collection('flight_records')
+#     # init_flight_records_collection()
+#     # col = init_flight_records_collection()
+#     #
+#     # print( col)
+#     # build_flight_records_index()
+#     # reset_flight_records_collection()
+#
