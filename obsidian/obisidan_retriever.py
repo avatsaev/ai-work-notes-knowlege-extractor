@@ -1,6 +1,6 @@
 # from langchain.vectorstores import Milvus
 from embedder.huggingface import hf_emeddings
-from langchain.vectorstores import Milvus
+from obsidian.custom_milvus import Milvus
 from dotenv import load_dotenv
 
 load_dotenv()

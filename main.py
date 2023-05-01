@@ -3,11 +3,14 @@ from dotenv import load_dotenv
 import os
 from obsidian.obisidan_retriever import get_obsidian_retriever
 from query_optimizer_tool import flight_records_query_optimizer_chain
-from flight_records_prompt_template import flight_records_system_prompt_template
+from flight_records_prompt_template import flight_records_system_prompt_template, flight_records_prompt_template
 from langchain.schema import (
     SystemMessage,
     HumanMessage,
 )
+from langchain import LLMChain
+
+from llm.gpt4all import get_gpt4all_llm
 
 import json
 
@@ -23,6 +26,9 @@ chat_openai = ChatOpenAI(
     model_name='gpt-3.5-turbo',  # can be used with llms like 'gpt-3.5-turbo'
     verbose=True,
 )
+
+get_gpt4all_llm = get_gpt4all_llm()
+
 
 if __name__ == '__main__':
 
@@ -57,6 +63,8 @@ if __name__ == '__main__':
             SystemMessage(content=system_prompt),
             HumanMessage(content=query),
         ]
+
+        question_propmpt = flight_records_prompt_template.format(question=query, context=context)
 
         chat_res = chat_openai(messages)
 
