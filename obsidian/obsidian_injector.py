@@ -1,9 +1,8 @@
-from langchain.embeddings.openai import OpenAIEmbeddings
-from custom_milvus import Milvus
-from custom_obsidian_loader import CustomObsidianLoader
+from obsidian.custom_milvus import Milvus
+from obsidian.custom_obsidian_loader import CustomObsidianLoader
 from langchain.text_splitter import MarkdownTextSplitter
 from dotenv import load_dotenv
-import os
+from langchain.embeddings import HuggingFaceEmbeddings
 
 load_dotenv()
 
@@ -15,7 +14,7 @@ def inject_data_into_milvus(override=False):
 
     # print(docs)
 
-    embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_KEY"), model="text-embedding-ada-002")
+    embeddings = hf_emeddings()
     vector_db = Milvus.from_documents(
         docs,
         embeddings,
@@ -27,6 +26,11 @@ def inject_data_into_milvus(override=False):
     print("Injection finished!")
 
     return vector_db
+
+
+def hf_emeddings():
+    model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    return HuggingFaceEmbeddings(model_name=model_name)
 
 # if __name__ == "__main__":
 #

@@ -4,8 +4,8 @@ from typing import List
 
 from langchain.docstore.document import Document
 from langchain.document_loaders.base import BaseLoader
-from splitter import extract_and_format_date
-from dataset_extractor import extract_hashtags
+from deprecated.splitter import extract_and_format_date
+from deprecated.dataset_processor import extract_hashtags
 class CustomObsidianLoader(BaseLoader):
     """Loader that loads Obsidian files from disk."""
 

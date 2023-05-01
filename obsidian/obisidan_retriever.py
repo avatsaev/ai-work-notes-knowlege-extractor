@@ -1,23 +1,21 @@
-from langchain.embeddings.openai import OpenAIEmbeddings
 # from langchain.vectorstores import Milvus
+from embedder.huggingface import hf_emeddings
 from langchain.vectorstores import Milvus
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
 
 def get_obsidian_retriever():
-    embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_KEY"), model="text-embedding-ada-002")
 
     vector_db = Milvus(
         connection_args={"host": "localhost", "port": "19530"},
-        embedding_function=embeddings,
+        embedding_function=hf_emeddings(),
         collection_name='flight_records',
         text_field='contents'
     )
 
-    return vector_db.as_retriever(search_kwargs={"k": 10})
+    return vector_db.as_retriever(search_kwargs={"k": 20})
 
 
 
@@ -29,7 +27,7 @@ def get_obsidian_retriever():
 #     vector = inject_data_into_milvus()
 #     print(vector)
 #
-#
+
 
 
 

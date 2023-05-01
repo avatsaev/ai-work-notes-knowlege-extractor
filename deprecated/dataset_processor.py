@@ -3,7 +3,7 @@ import re
 import os
 import fnmatch
 import datetime
-from embedder import openai_embed
+from embedder.huggingface import hf_emeddings
 import tiktoken
 
 tokenizer = tiktoken.get_encoding('p50k_base')
@@ -110,7 +110,7 @@ def read_dataset_files(directory_path):
 
 def create_flight_record_collection_item(data):
     hashtags = ','.join(data['hashtags'])
-    embed_vector = openai_embed(data['contents'])
+    embed_vector = hf_emeddings().embed_query(data['contents'])
     record = {'flight_record_tags':  hashtags,
               'flight_record_date': data['date'],
               'flight_record_contents': data['contents'],
